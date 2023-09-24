@@ -4,6 +4,12 @@ function parseComment(comment, result) {
    const filteredLines = lines.map(line => line.replace(/^\/\*\*|^\s*\*\s|^\s*\*\//, '').trim()).filter(line => line !== '');
 
    let currentLine = "";
+   if (comment.indexOf('@') > -1) {
+      let title = filteredLines.join("\n").substring(0, filteredLines.join("\n").indexOf('@'));
+      if (title.trim()) {
+         result["@title"] = title.trim();
+      }
+   }
    for (let i = 0; i < filteredLines.length; i++) {
       if (i < filteredLines.length) {
          currentLine += (currentLine ? "\n" : "") + filteredLines[i];
@@ -11,8 +17,6 @@ function parseComment(comment, result) {
             continue;
          };
       }
-
-      console.log(currentLine);
 
       if (currentLine && currentLine.indexOf(" ") > -1) {
          const tagName = currentLine.substring(0, currentLine.indexOf(" ")).trim();

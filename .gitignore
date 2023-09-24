@@ -3,6 +3,7 @@
 
 # testing
 /coverage
+/src/components
 
 # production
 /dist

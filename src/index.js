@@ -15,19 +15,20 @@ const genComments = (comments, doc) => {
 
   while ((match = commentRegex.exec(doc))) {
     const commentText = match[1].trim();
-    const lines = commentText.split('\n');
-    const filteredLines = lines.filter((line) => !/^[\s*]*$/.test(line));
-    const firstLine = filteredLines[1].trim().replace(/\*/g, '').trim();
+    const typeRegexStr = "^\\s*\\*\\s*(" + doctags.join("|") + ")$";
+    const typeRegex = new RegExp(typeRegexStr, "gm"); // 多个空格* @emits
 
-    if (doctags.includes(firstLine)) {
-      if (!comments[firstLine])
-        comments[firstLine] = [];
-      const result = {
-        source: match[1].trim(),
-      };
-      comments[firstLine].push(result);
+    const matchResult = typeRegex.exec(commentText);
 
-      parseComment(match[1].trim(), result);
+    if (matchResult) {
+      const matchType = matchResult[1];
+
+      if (!comments[matchType]) comments[matchType] = [];
+
+      const result = { source: commentText };
+      comments[matchType].push(result);
+
+      parseComment(commentText, result);
     }
   }
 };
