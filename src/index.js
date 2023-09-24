@@ -128,7 +128,7 @@ function readConfig(filePath) {
   const configPath = filePath;
   if (!fs.existsSync(configPath)) {
     logger.error('Invalid yaml configuration file.');
-    return;
+    process.exit(1);
   }
   const config = yaml.load(fs.readFileSync(configPath, 'utf8'));
 
