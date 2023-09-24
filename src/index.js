@@ -21,11 +21,11 @@ const genComments = (comments, doc) => {
     const matchResult = typeRegex.exec(commentText);
 
     if (matchResult) {
-      const matchType = matchResult[1];
+      const matchType = matchResult[1].replace("@", "_");
 
       if (!comments[matchType]) comments[matchType] = [];
 
-      const result = { source: commentText };
+      const result = { _source: commentText };
       comments[matchType].push(result);
 
       parseComment(commentText, result);
@@ -53,7 +53,7 @@ function extractComments(componentFilePath) {
 
   const comments = {};
   for (let i = 0; i < doctags.length; i++) {
-    comments[doctags[i]] = [];
+    comments[doctags[i].replace("@", "_")] = [];
   }
 
   const scriptDoc = scriptSetup ? scriptSetup : script;

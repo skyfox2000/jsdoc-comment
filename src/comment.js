@@ -7,7 +7,7 @@ function parseComment(comment, result) {
    if (comment.indexOf('@') > -1) {
       let title = filteredLines.join("\n").substring(0, filteredLines.join("\n").indexOf('@'));
       if (title.trim()) {
-         result["@title"] = title.trim();
+         result["_title"] = title.trim();
       }
    }
    for (let i = 0; i < filteredLines.length; i++) {
@@ -19,13 +19,13 @@ function parseComment(comment, result) {
       }
 
       if (currentLine && currentLine.indexOf(" ") > -1) {
-         const tagName = currentLine.substring(0, currentLine.indexOf(" ")).trim();
+         const tagName = currentLine.substring(0, currentLine.indexOf(" ")).trim().replace("@", "_");
          const tagContent = currentLine.substring(currentLine.indexOf(" ") + 1).trim()
 
          if (tagContent) {
             // 特殊处理的标签
             switch (tagName) {
-               case "@type":
+               case "_type":
                   result[tagName] = tagContent.replace(/\{|\}/g, "");
                   break;
                default:
