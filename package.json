@@ -1,0 +1,21 @@
+{
+   "name": "jsdoc-comment",
+   "version": "0.0.1",
+   "description": "JsDoc注释处理器，输出json数据, jsdoc comment generator, output json data",
+   "type": "commonjs",
+   "bin": {
+      "jsdoc-comment": "./bin/cli.js"
+   },
+   "scripts": {
+      "jsdoc": "node ./bin/cli.js"
+   },
+   "dependencies": {
+      "@vue/compiler-sfc": "^3.3.4",
+      "commander": "^11.0.0",
+      "consola": "^3.2.3",
+      "glob": "^10.3.6",
+      "js-yaml": "^4.1.0",
+      "util": "^0.12.5"
+   }
+}
+

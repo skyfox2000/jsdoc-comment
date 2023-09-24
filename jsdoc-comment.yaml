@@ -1,0 +1,19 @@
+# 配置文件默认路径为 /jsdoc-comment.yaml
+# 可通过命令行参数 -c /path/to/config.yaml 指定配置文件位置
+input:
+   folderPath: "/src/components" # 指定组件所在文件夹路径
+   file: "**/src/*.vue" # 指定组件文件名
+
+output:
+   # 输出mode有2种方式：
+   # 1、 seperate 在组件的目录为基准，以下面的输出目录为相对目录，生成以组件名+.json的文件
+   # 2、 combine 以下面配置的路径和文件将所有组件信息写在统一的json文件中
+   mode: seperate # 默认
+   doctags: # 定义需要输出到文档的标签类型
+      - "@component" # 组件注释
+      - "@props" # 属性注释
+      - "@emits" # 事件注释
+      - "@slots" # 插槽注释
+   outputDir: "../docs/" # 指定输出目录
+   outputName: "comments.json" # 指定输出文件名
+
