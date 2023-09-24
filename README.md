@@ -48,7 +48,7 @@ output:
 
 ```json
 "scripts": {
-  "jsdoc": "node jsdoc-comment [-c config.yaml]"  /// [-c config.yaml] 可选
+  "jsdoc": "jsdoc-comment [-c config.yaml]"  /// [-c config.yaml] 可选
 }
 ```
 
