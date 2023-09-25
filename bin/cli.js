@@ -7,11 +7,11 @@ const { readConfig, scanComponents } = require("../src/index.js");
 program.version(packageJson.version).description(packageJson.description);
 
 program
-   .option("-c, --config <path>", "Specify the config file path")
+   .option("-c, --config <configFile>", "Specify the config file path")
 
 program.parse(process.argv);
 
-const { path: filePath } = program;
-
-const config = readConfig(filePath);
+const options = program.opts();
+const configFile = options.config;
+const config = readConfig(configFile);
 scanComponents(config);
