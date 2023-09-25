@@ -52,6 +52,9 @@ function extractComments(componentFilePath) {
 
 
   const comments = {};
+  for (const i = 0; i < doctags.length; i++) {
+    comments[doctags[i].replace("@", "_")] = [];
+  }
 
   const scriptDoc = scriptSetup ? scriptSetup : script;
 
@@ -61,6 +64,10 @@ function extractComments(componentFilePath) {
   for (let key in comments) {
     comments[key].sort((a, b) => a._name < b._name ? -1 : (a._name > b._name ? 1 : 0));
   }
+
+  if (comments._component && comments._component.length) {
+    comments._component = comments._component[0];
+  } else comments._component = {};
 
   return comments;
 }
