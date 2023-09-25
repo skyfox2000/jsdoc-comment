@@ -52,7 +52,7 @@ function extractComments(componentFilePath) {
 
 
   const comments = {};
-  for (const i = 0; i < doctags.length; i++) {
+  for (let i = 0; i < doctags.length; i++) {
     comments[doctags[i].replace("@", "_")] = [];
   }
 

@@ -1,6 +1,6 @@
 {
    "name": "jsdoc-comment",
-   "version": "0.0.8",
+   "version": "0.0.9",
    "description": "JsDoc注释处理器，输出json数据, jsdoc comment generator, output json data",
    "author": "Alex.Hua",
    "type": "commonjs",
