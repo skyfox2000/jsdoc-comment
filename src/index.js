@@ -52,14 +52,15 @@ function extractComments(componentFilePath) {
 
 
   const comments = {};
-  for (let i = 0; i < doctags.length; i++) {
-    comments[doctags[i].replace("@", "_")] = [];
-  }
 
   const scriptDoc = scriptSetup ? scriptSetup : script;
 
   genComments(comments, scriptDoc);
   genComments(comments, template);
+
+  for (let key in comments) {
+    comments[key].sort((a, b) => a._name < b._name ? -1 : (a._name > b._name ? 1 : 0));
+  }
 
   return comments;
 }
